@@ -1,0 +1,61 @@
+Failure # 1 (occurred at 2023-07-30_13-41-57)
+[36mray::PPO.train()[39m (pid=6948, ip=172.16.5.4, actor_id=afecf993b2fc4fe94512235001000000, repr=PPO)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 375, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 372, in train
+    result = self.step()
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/algorithms/algorithm.py", line 851, in step
+    results, train_iter_ctx = self._run_one_training_iteration()
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/algorithms/algorithm.py", line 2835, in _run_one_training_iteration
+    results = self.training_step()
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/algorithms/ppo/ppo.py", line 429, in training_step
+    train_batch = synchronous_parallel_sample(
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/execution/rollout_ops.py", line 85, in synchronous_parallel_sample
+    sample_batches = worker_set.foreach_worker(
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/worker_set.py", line 680, in foreach_worker
+    handle_remote_call_result_errors(remote_results, self._ignore_worker_failures)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/worker_set.py", line 76, in handle_remote_call_result_errors
+    raise r.get()
+ray.exceptions.RayTaskError(ValueError): [36mray::RolloutWorker.apply()[39m (pid=6994, ip=172.16.5.4, actor_id=7d628bae6b74f428e567856b01000000, repr=<ray.rllib.evaluation.rollout_worker.RolloutWorker object at 0x7fdd346f52d0>)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/actor_manager.py", line 185, in apply
+    raise e
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/actor_manager.py", line 176, in apply
+    return func(self, *args, **kwargs)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/execution/rollout_ops.py", line 86, in <lambda>
+    lambda w: w.sample(), local_worker=False, healthy_only=True
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/rollout_worker.py", line 696, in sample
+    batches = [self.input_reader.next()]
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/sampler.py", line 92, in next
+    batches = [self.get_data()]
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/sampler.py", line 277, in get_data
+    item = next(self._env_runner)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/env_runner_v2.py", line 344, in run
+    outputs = self.step()
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/env_runner_v2.py", line 370, in step
+    active_envs, to_eval, outputs = self._process_observations(
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/env_runner_v2.py", line 637, in _process_observations
+    processed = policy.agent_connectors(acd_list)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/connectors/agent/pipeline.py", line 41, in __call__
+    ret = c(ret)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/connectors/connector.py", line 254, in __call__
+    return [self.transform(d) for d in acd_list]
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/connectors/connector.py", line 254, in <listcomp>
+    return [self.transform(d) for d in acd_list]
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/connectors/agent/obs_preproc.py", line 58, in transform
+    d[SampleBatch.NEXT_OBS] = self._preprocessor.transform(
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/models/preprocessors.py", line 206, in transform
+    self.check_shape(observation)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/models/preprocessors.py", line 74, in check_shape
+    raise ValueError(
+ValueError: Observation ([ 3.44524503e+00 -7.55801424e-03  8.81477073e-03 -1.23259155e-02
+ -7.13578641e-01  1.57326472e+00 -7.06398010e-01 -9.99999762e-01
+  0.00000000e+00  4.64860618e-01  5.73265016e-01  9.34906721e-01
+  3.17891448e-07  0.00000000e+00  7.24596977e-02  7.32825845e-02
+  7.58473054e-02  8.04708004e-02  8.77942145e-02  9.90307480e-02
+  1.16567783e-01  1.45626843e-01  1.99967280e-01  3.30856085e-01] dtype=float32) outside given space (Box([-3.1415927 -5.        -5.        -5.        -3.1415927 -5.
+ -3.1415927 -5.        -0.        -3.1415927 -5.        -3.1415927
+ -5.        -0.        -1.        -1.        -1.        -1.
+ -1.        -1.        -1.        -1.        -1.        -1.       ], [3.1415927 5.        5.        5.        3.1415927 5.        3.1415927
+ 5.        5.        3.1415927 5.        3.1415927 5.        5.
+ 1.        1.        1.        1.        1.        1.        1.
+ 1.        1.        1.       ], (24,), float32))!
