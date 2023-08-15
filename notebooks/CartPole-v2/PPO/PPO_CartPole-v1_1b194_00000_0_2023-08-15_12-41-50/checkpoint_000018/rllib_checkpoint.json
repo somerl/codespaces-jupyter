@@ -1,0 +1,1 @@
+{"type": "Algorithm", "checkpoint_version": "1.2", "format": "cloudpickle", "state_file": "/workspaces/codespaces-jupyter/notebooks/CartPole-v2/PPO/PPO_CartPole-v1_1b194_00000_0_2023-08-15_12-41-50/checkpoint_000018/algorithm_state.pkl", "policy_ids": ["default_policy"], "ray_version": "2.6.1", "ray_commit": "d68bf04883af2e430fc3a50fd544bb7c84aff2e9"}
