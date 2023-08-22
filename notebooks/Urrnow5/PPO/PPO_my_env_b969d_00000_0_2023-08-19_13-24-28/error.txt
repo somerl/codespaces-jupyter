@@ -1,0 +1,72 @@
+Failure # 1 (occurred at 2023-08-19_13-24-38)
+The actor died because of an error raised in its creation task, [36mray::PPO.__init__()[39m (pid=43366, ip=172.16.5.4, actor_id=5a1e2ffd3a49b765a3aa9e4501000000, repr=PPO)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/worker_set.py", line 227, in _setup
+    self.add_workers(
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/worker_set.py", line 593, in add_workers
+    raise result.get()
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/actor_manager.py", line 481, in __fetch_result
+    result = ray.get(r)
+ray.exceptions.RayActorError: The actor died because of an error raised in its creation task, [36mray::RolloutWorker.__init__()[39m (pid=43414, ip=172.16.5.4, actor_id=1a4396583d46beff276537c601000000, repr=<ray.rllib.evaluation.rollout_worker.RolloutWorker object at 0x7fb032764340>)
+  File "/tmp/ipykernel_42515/199523157.py", line 74, in step
+AttributeError: 'list' object has no attribute 'reshape'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::RolloutWorker.__init__()[39m (pid=43414, ip=172.16.5.4, actor_id=1a4396583d46beff276537c601000000, repr=<ray.rllib.evaluation.rollout_worker.RolloutWorker object at 0x7fb032764340>)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/pre_checks/env.py", line 85, in check_env
+    check_gym_environments(env, AlgorithmConfig() if config is None else config)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/pre_checks/env.py", line 235, in check_gym_environments
+    raise ValueError(
+ValueError: Your gymnasium.Env's `step()` method raised an Exception!
+
+During handling of the above exception, another exception occurred:
+
+[36mray::RolloutWorker.__init__()[39m (pid=43414, ip=172.16.5.4, actor_id=1a4396583d46beff276537c601000000, repr=<ray.rllib.evaluation.rollout_worker.RolloutWorker object at 0x7fb032764340>)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/rollout_worker.py", line 404, in __init__
+    check_env(self.env, self.config)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/pre_checks/env.py", line 96, in check_env
+    raise ValueError(
+ValueError: Traceback (most recent call last):
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/pre_checks/env.py", line 233, in check_gym_environments
+    results = env.step(sampled_action)
+  File "/tmp/ipykernel_42515/199523157.py", line 74, in step
+AttributeError: 'list' object has no attribute 'reshape'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::RolloutWorker.__init__()[39m (pid=43414, ip=172.16.5.4, actor_id=1a4396583d46beff276537c601000000, repr=<ray.rllib.evaluation.rollout_worker.RolloutWorker object at 0x7fb032764340>)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/pre_checks/env.py", line 85, in check_env
+    check_gym_environments(env, AlgorithmConfig() if config is None else config)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/pre_checks/env.py", line 235, in check_gym_environments
+    raise ValueError(
+ValueError: Your gymnasium.Env's `step()` method raised an Exception!
+
+The above error has been found in your environment! We've added a module for checking your custom environments. It may cause your experiment to fail if your environment is not set up correctly. You can disable this behavior via calling `config.environment(disable_env_checking=True)`. You can run the environment checking module standalone by calling ray.rllib.utils.check_env([your env]).
+
+During handling of the above exception, another exception occurred:
+
+[36mray::PPO.__init__()[39m (pid=43366, ip=172.16.5.4, actor_id=5a1e2ffd3a49b765a3aa9e4501000000, repr=PPO)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/algorithms/algorithm.py", line 517, in __init__
+    super().__init__(
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 169, in __init__
+    self.setup(copy.deepcopy(self.config))
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/algorithms/algorithm.py", line 639, in setup
+    self.workers = WorkerSet(
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/evaluation/worker_set.py", line 179, in __init__
+    raise e.args[0].args[2]
+ValueError: Traceback (most recent call last):
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/pre_checks/env.py", line 233, in check_gym_environments
+    results = env.step(sampled_action)
+  File "/tmp/ipykernel_42515/199523157.py", line 74, in step
+AttributeError: 'list' object has no attribute 'reshape'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::PPO.__init__()[39m (pid=43366, ip=172.16.5.4, actor_id=5a1e2ffd3a49b765a3aa9e4501000000, repr=PPO)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/pre_checks/env.py", line 85, in check_env
+    check_gym_environments(env, AlgorithmConfig() if config is None else config)
+  File "/home/codespace/.python/current/lib/python3.10/site-packages/ray/rllib/utils/pre_checks/env.py", line 235, in check_gym_environments
+    raise ValueError(
+ValueError: Your gymnasium.Env's `step()` method raised an Exception!
+
+The above error has been found in your environment! We've added a module for checking your custom environments. It may cause your experiment to fail if your environment is not set up correctly. You can disable this behavior via calling `config.environment(disable_env_checking=True)`. You can run the environment checking module standalone by calling ray.rllib.utils.check_env([your env]).
