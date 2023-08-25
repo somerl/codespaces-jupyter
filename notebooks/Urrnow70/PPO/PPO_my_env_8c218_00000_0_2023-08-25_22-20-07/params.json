@@ -1,0 +1,6 @@
+{
+  "env": "my_env",
+  "evaluation_interval": 10,
+  "evaluation_num_episodes": 50,
+  "num_workers": 2
+}
